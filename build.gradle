@@ -1,0 +1,22 @@
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.ullink.slack:simpleslackapi:0.4.0'
+    compile 'org.glassfish.tyrus.bundles:tyrus-standalone-client:1.8.3'
+    compile 'com.googlecode.json-simple:json-simple:1.1'
+    compile 'org.slf4j:slf4j-simple:1.7.7'
+    compile 'org.apache.httpcomponents:httpclient:4.4'
+    compile 'com.j256.ormlite:ormlite-android:4.46'
+    compile 'com.j256.ormlite:ormlite-core:4.46'
+    compile 'com.j256.ormlite:ormlite-jdbc:4.46'
+    compile 'com.h2database:h2:1.4.190'
+    compile 'org.xerial:sqlite-jdbc:3.8.9.1'
+}
