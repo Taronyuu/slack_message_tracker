@@ -20,13 +20,19 @@ public class Search {
         String channelId = event.getChannel().getId();
         List<Message> messages = messageDao.queryBuilder().where().like("message", "%" + searchedText + "%").query();
 
-        session.sendMessage(event.getChannel(), "The following results where found:", null);
+        String textMessage = "The following results where found:\n";
         for(int i = 0; i < messages.size(); i++){
             Message message = messages.get(i);
             User user = userDao.queryForId(message.getUser_id());
-            String textMessage = "[" + message.getCreated_at() + "] " + user.getUserName() + ": " + message.getMessage();
-            session.sendMessage(event.getChannel(), textMessage, null);
+            if(user.getId().equals(session.sessionPersona().getId())){
+                continue;
+            }
+            textMessage = textMessage + "[" + message.getCreated_at() + "] " + user.getUserName() + ": " + message.getMessage() + "\n";
         }
+        if(messages.size() == 0){
+            textMessage = textMessage + "*No items could be found* :open_mouth:";
+        }
+        session.sendMessage(event.getChannel(), textMessage, null);
     }
 
 }
