@@ -8,13 +8,13 @@ import java.util.Date;
 @DatabaseTable(tableName = "message")
 public class Message {
 
-    @DatabaseField(id = true)
+    @DatabaseField
     private Integer hash_id;
     @DatabaseField
     private String user_id;
     @DatabaseField
     private String channel_id;
-    @DatabaseField
+    @DatabaseField(columnDefinition = "TEXT")
     private String message;
     @DatabaseField
     private Date created_at;

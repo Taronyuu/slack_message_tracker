@@ -31,5 +31,6 @@
     <orderEntry type="library" name="Gradle: com.j256.ormlite:ormlite-jdbc:4.46" level="project" />
     <orderEntry type="library" name="Gradle: com.h2database:h2:1.4.190" level="project" />
     <orderEntry type="library" name="Gradle: org.xerial:sqlite-jdbc:3.8.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: mysql:mysql-connector-java:5.1.16" level="project" />
   </component>
 </module>

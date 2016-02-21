@@ -1,14 +1,29 @@
 import Models.Channel;
 import Models.Message;
 import Models.User;
+import com.j256.ormlite.dao.Dao;
 import com.ullink.slack.simpleslackapi.events.SlackMessagePosted;
 
+import java.sql.SQLException;
 import java.util.Date;
 
-/**
- * Created by Zander on 20/02/16.
- */
 public class Store {
+
+    public void storeNewMessage(SlackMessagePosted event, Dao<Message, String> messageDao, Dao<User, String> userDao, Dao<Channel, String> channelDao) throws SQLException {
+        User user = userDao.queryForId(event.getSender().getId());
+        Channel channel = channelDao.queryForId(event.getChannel().getId());
+
+        if (user == null) {
+            user = this.getFilledUserModelByEvent(event);
+            userDao.create(user);
+        }
+        if (channel == null) {
+            channel = this.getFilledChannelModelByEvent(event);
+            channelDao.create(channel);
+        }
+        Message message = this.getFilledMessageModelByEvent(event, user, channel);
+        messageDao.create(message);
+    }
 
     public User getFilledUserModelByEvent(SlackMessagePosted event){
         User user = new User();
