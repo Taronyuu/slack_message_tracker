@@ -11,7 +11,7 @@ public class Channel {
     @DatabaseField
     private String name;
 
-    public Channel(){
+    public Channel() {
         //Empty constructor for Ormlite
     }
 

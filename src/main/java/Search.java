@@ -24,17 +24,17 @@ public class Search {
         String[] pageNumber = searchCommand.split("-", 2);
         Integer pageCount = 1;
         Long offsetCount = new Long(0);
-        if(pageNumber.length > 1){
+        if (pageNumber.length > 1) {
             pageCount = Integer.parseInt(pageNumber[1]);
-            offsetCount = new Long((pageCount-1) * this.maxRows);
+            offsetCount = new Long((pageCount - 1) * this.maxRows);
         }
 
 
         String channelId = event.getChannel().getId();
         List<Message> messages = messageDao.queryBuilder().offset(offsetCount).limit(new Long(this.maxRows + 2)).where().like("message", "%" + searchedText + "%").and().ne("user_id", session.sessionPersona().getId()).query();
         String textMessage = "*The following results where found:*\n";
-        for(int i = 0; i < messages.size(); i++){
-            if(i > this.maxRows){
+        for (int i = 0; i < messages.size(); i++) {
+            if (i > this.maxRows) {
                 continue;
             }
             Message message = messages.get(i);
@@ -44,13 +44,13 @@ public class Search {
 //            }
             textMessage = textMessage + "[" + message.getCreated_at() + "] " + user.getUserName() + ": " + message.getMessage() + "\n";
         }
-        if(!messages.isEmpty()){
-            if(messages.size() > this.maxRows){
-                textMessage = textMessage + "*Limited results to " + this.maxRows + ". Use search-" + (pageCount+1) + " to view the next page*";
+        if (!messages.isEmpty()) {
+            if (messages.size() > this.maxRows) {
+                textMessage = textMessage + "*Limited results to " + this.maxRows + ". Use search-" + (pageCount + 1) + " to view the next page*";
             }
         }
 
-        if(messages.isEmpty()){
+        if (messages.isEmpty()) {
             textMessage = "*No items could be found* :open_mouth:";
         }
         session.sendMessage(event.getChannel(), textMessage, null);

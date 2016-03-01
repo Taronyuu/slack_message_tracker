@@ -15,7 +15,7 @@ public class User {
     @DatabaseField
     private String userMail;
 
-    public User(){
+    public User() {
         //Empty constructor
     }
 

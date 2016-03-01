@@ -25,17 +25,17 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         File f = new File(propertyMethod.propertyPath);
-        if(!f.exists() || f.isDirectory()){
+        if (!f.exists() || f.isDirectory()) {
             propertyMethod.createPropertyFile();
         }
 
         Properties prop = propertyMethod.getProperties();
 
         ConnectionSource connectionSource = null;
-        if(prop.getProperty("database_type").equals("mysql")){
+        if (prop.getProperty("database_type").equals("mysql")) {
             String databaseUrl = "jdbc:mysql://" + prop.getProperty("mysql_host") + ":" + prop.getProperty("mysql_port") + "/" + prop.getProperty("mysql_database");
             connectionSource = new JdbcConnectionSource(databaseUrl, prop.getProperty("mysql_username"), prop.getProperty("mysql_password"));
-        }else{
+        } else {
             String databaseUrl = "jdbc:sqlite:./sqlite.db";
             connectionSource = new JdbcConnectionSource(databaseUrl);
         }
@@ -54,7 +54,7 @@ public class Main {
             public void onEvent(SlackMessagePosted event, SlackSession session) {
                 System.out.println("New event - Message received: " + event.getMessageContent() + "; Message sended by: " + event.getSender().getUserName() + " from channel: " + event.getChannel().getName());
 
-                if(event.getMessageContent().startsWith("<@" + session.sessionPersona().getId() + ">: search") && event.getSender().getId() != session.sessionPersona().getId()){
+                if (event.getMessageContent().startsWith("<@" + session.sessionPersona().getId() + ">: search") && event.getSender().getId() != session.sessionPersona().getId()) {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -65,7 +65,7 @@ public class Main {
                             }
                         }
                     }).start();
-                }else if(event.getSender().getId() != session.sessionPersona().getId()) {
+                } else if (event.getSender().getId() != session.sessionPersona().getId()) {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {

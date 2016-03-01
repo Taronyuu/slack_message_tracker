@@ -25,7 +25,7 @@ public class Store {
         messageDao.create(message);
     }
 
-    public User getFilledUserModelByEvent(SlackMessagePosted event){
+    public User getFilledUserModelByEvent(SlackMessagePosted event) {
         User user = new User();
         user.setId(event.getSender().getId());
         user.setRealName(event.getSender().getRealName());
@@ -34,14 +34,14 @@ public class Store {
         return user;
     }
 
-    public Channel getFilledChannelModelByEvent(SlackMessagePosted event){
+    public Channel getFilledChannelModelByEvent(SlackMessagePosted event) {
         Channel channel = new Channel();
         channel.setChannel_id(event.getChannel().getId());
         channel.setName(event.getChannel().getName());
         return channel;
     }
 
-    public Message getFilledMessageModelByEvent(SlackMessagePosted event, User user, Channel channel){
+    public Message getFilledMessageModelByEvent(SlackMessagePosted event, User user, Channel channel) {
         Message message = new Message();
         message.setHashId(event.hashCode());
         message.setUser_id(user.getId());

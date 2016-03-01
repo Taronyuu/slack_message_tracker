@@ -21,16 +21,15 @@ public class Message {
     @DatabaseField
     private Date created_at;
 
-    public Message(){
+    public Message() {
         //Empty constructor
     }
 
-    public Integer getHashId()
-    {
+    public Integer getHashId() {
         return this.hash_id;
     }
 
-    public void setHashId(Integer hash){
+    public void setHashId(Integer hash) {
         this.hash_id = hash;
     }
 
