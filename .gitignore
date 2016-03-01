@@ -1,3 +1,5 @@
 .idea
 sqlite.db
 build
+out
+.gradle
