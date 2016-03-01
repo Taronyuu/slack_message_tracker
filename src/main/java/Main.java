@@ -46,30 +46,7 @@ public class Main {
         TableUtils.createTableIfNotExists(connectionSource, Message.class);
         TableUtils.createTableIfNotExists(connectionSource, Channel.class);
 
-//        for(int i = 0; i < 296001; i++){
-//            String uuid = UUID.randomUUID().toString();
-//            Channel channel = new Channel();
-//            channel.setName(uuid);
-//            channel.setChannel_id(uuid);
-//            channelDao.create(channel);
-//
-//            User user = new User();
-//            user.setUserName(uuid);
-//            user.setUserMail(uuid);
-//            user.setRealName(uuid);
-//            user.setId(uuid);
-//            userDao.create(user);
-//
-//            Message message = new Message();
-//            message.setHashId(9999999);
-//            message.setCreated_at(new Date());
-//            message.setMessage(uuid + uuid + uuid + uuid + uuid);
-//            message.setChannel_id(uuid);
-//            message.setUser_id(uuid);
-//            messageDao.create(message);
-//        }
-
-        SlackSession session = SlackSessionFactory.createWebSocketSlackSession("xoxb-22329050294-0s0jFV1a4Ekh6YbykPzfQmqQ");
+        SlackSession session = SlackSessionFactory.createWebSocketSlackSession(prop.getProperty("slack_api_key"));
         session.connect();
 
         session.addMessagePostedListener(new SlackMessagePostedListener() {

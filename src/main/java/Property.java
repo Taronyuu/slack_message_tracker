@@ -17,6 +17,7 @@ public class Property {
         prop.setProperty("mysql_username", "admin");
         prop.setProperty("mysql_password", "password");
         prop.setProperty("mysql_port", "3306");
+        prop.setProperty("slack_api_key", "XXXX");
 
         prop.store(output, null);
     }
