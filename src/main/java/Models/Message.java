@@ -8,6 +8,8 @@ import java.util.Date;
 @DatabaseTable(tableName = "message")
 public class Message {
 
+    @DatabaseField(generatedId = true)
+    private Integer id;
     @DatabaseField
     private Integer hash_id;
     @DatabaseField
