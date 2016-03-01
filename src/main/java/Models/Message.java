@@ -5,7 +5,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Date;
 
-@DatabaseTable(tableName = "message")
+@DatabaseTable(tableName = "jsmt_message")
 public class Message {
 
     @DatabaseField(generatedId = true)

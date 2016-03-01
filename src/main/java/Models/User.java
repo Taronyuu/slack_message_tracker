@@ -3,7 +3,7 @@ package Models;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "user")
+@DatabaseTable(tableName = "jsmt_user")
 public class User {
 
     @DatabaseField(id = true)
