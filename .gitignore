@@ -3,4 +3,4 @@ sqlite.db
 build
 out
 .gradle
-.config.properties
+config.properties
